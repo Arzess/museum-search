@@ -2,7 +2,7 @@
 
 - Name: Arsenii Malyshko
 - Matr.-Nr.: a12338220
-- Gruppe: [XX]
+- Gruppe: 214
 
 ### Implementierung
 
@@ -16,7 +16,8 @@ GerÃ¤t(e), auf dem(denen) getestet wurde:
 Nur fÃ¼r React Native: Link zur Expo App.
 
 Externe Libraries und Frameworks:
-[...]
+
+- React Native Vector Icons - Material Icons
 
 Dauer der Entwicklung:
 [XX Stunden]
