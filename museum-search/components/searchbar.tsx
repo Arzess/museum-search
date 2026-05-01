@@ -3,16 +3,15 @@ import {View, TextInput, Pressable, StyleSheet} from 'react-native'
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 
 
-export const SearchBar = ({placeholder} : {placeholder: string}) => {
+export const SearchBar = ({placeholder, value, setValue, init, filter} 
+    : {placeholder: string, value: string, setValue : Function, init: Function, filter: any}) => {
     return (
         <View style={styles.searchbar}>
-            <Pressable style={styles.searchButton}><MaterialIcons name="menu" color="black" size={24} /></Pressable>
-
-            <TextInput style={styles.searchInput} placeholder={placeholder} placeholderTextColor="#49454F" returnKeyType='search' underlineColorAndroid='transparent'>
+            <Pressable style={styles.searchButton} onPress={filter as any}><MaterialIcons name="menu" color="black" size={24} /></Pressable>
+            <TextInput style={styles.searchInput} placeholder={placeholder} onChangeText={setValue as any} value={value} placeholderTextColor="#49454F" returnKeyType='search' underlineColorAndroid='transparent'>
             </TextInput>
-            <Pressable style={styles.searchButton}><MaterialIcons name="search" color="black" size={24} /></Pressable>
+            <Pressable style={styles.searchButton} onPress={init as any}><MaterialIcons name="search" color="black" size={24}/></Pressable>
         </View>
-
     );
 
 }
@@ -23,9 +22,10 @@ const styles = StyleSheet.create({
         outlineColor: 'transparent',
         borderColor: 'transparent',
         backgroundColor: 'transparent',
+        width: '100%',
+
     },
     searchbar: {
-        width: 'auto',
         height: "auto",
         display: 'flex',
         flexDirection: 'row',
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#EBF7FF',
         borderRadius: 16,
         overflow: 'hidden',
+        width: '100%',
     },
     searchButton: {
         width: 48,

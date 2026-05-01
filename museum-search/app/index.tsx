@@ -1,21 +1,27 @@
 import React from 'react';
+import { useState } from 'react';
 import { useFonts } from "expo-font";
 import {StyleSheet, Text, View, Image} from 'react-native';
 import { Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold } from "@expo-google-fonts/rubik";
 import { useColorScheme } from '@/hooks/use-color-scheme';
-import { SearchBar } from '../components/searchbar';
-
-
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { Search } from '../components/searchmodal';
+import { useRouter } from 'expo-router';
 
 export default function App() {
   const colorScheme = useColorScheme();
-    const [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold
   });
+  const [searchResult, setSearchResult] = useState([]);
+  // API Search logic
+  const router = useRouter();
+  const reroute = (query: string) => {
+      router.push({
+        pathname: "/search/[query]",
+        params: { query: query }
+      });
+  }
+
   return (
     
     <View style={styles.mainContainer}>
@@ -23,13 +29,11 @@ export default function App() {
       <View style={styles.container}>
           <View className='header-container' style={styles.headerContainer}>
             <Image source={require('../assets/images/museum-search-icon.png')}></Image>
-            <Text style={[styles.heading, styles.rubikBold]}>Museum <Text style={styles.highlightedPrimary}>Search</Text></Text>
-            <Text style={[styles.headingAdditionalText, styles.rubikMedium]}>Powered by <Text style={styles.highlightedSecondary}>Chicago API.</Text></Text>
+            <Text style={[styles.heading, fonts.rubikBold]}>Museum <Text style={colors.secondary}>Search</Text></Text>
+            <Text style={[styles.headingAdditionalText, fonts.rubikMedium]}>Powered by Chicago API.</Text>
           </View>
-           {/* Searchbar */}
-           <SearchBar
-              placeholder="Search"
-            />
+          {/* Search logic */}
+          <Search searchResult={searchResult} setSearchResult={setSearchResult} init={reroute}/>
     </View>
     {/* Footer */}
     <View className='footer' style={styles.footer}>
@@ -37,7 +41,7 @@ export default function App() {
 <br/> Enjoy. </Text>
         
         <View style={styles.copyright}>
-          <Text style={styles.rubik}>Arsenii Malyshko © 2026</Text>
+          <Text style={fonts.rubik}>Arsenii Malyshko © 2026</Text>
         </View>
 
     </View>
@@ -45,14 +49,30 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  // General styles
-  highlightedPrimary: {
+
+
+
+// Stylesheets
+export const colors = StyleSheet.create({
+  primary: {
     color: '#60AED9',
   },
-  highlightedSecondary: {
+  secondary: {
     color: '#D13A38',
   },
+  primary4: {
+    color: '#84A7B9',
+  },
+  black: {
+    color: 'black',
+  },
+  white: {
+    color: 'white',
+
+  },
+});
+
+export const fonts = StyleSheet.create({
   rubik: {
     fontSize: 16,
     fontFamily: 'Rubik_400Regular'    
@@ -66,8 +86,13 @@ const styles = StyleSheet.create({
   rubikSemi: {
     fontFamily: 'Rubik_600SemiBold'
   },
+});
+
+
+const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: 'white',
+    flex: 1,
   },
   headerContainer: {
     display: 'flex',
@@ -82,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   container: {
-    height: '100%',
+    flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -98,6 +123,7 @@ const styles = StyleSheet.create({
   // Footer styles
   footer: {
     gap: 16,
+    paddingBottom: 64,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -113,6 +139,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
 
   },
   footerAdditionalText: {
