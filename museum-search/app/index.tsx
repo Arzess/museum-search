@@ -14,19 +14,13 @@ export default function App() {
   });
   const [searchResult, setSearchResult] = useState([]);
   // API Search logic
-  const executeSearch = async (value: string) => {
-      try{
-          const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?q=${value}&fields=id,title,artist_display,date_display,main_reference_number`);
-          const data = await res.json();
-          setSearchResult(data.data);
-      }
-      catch{
-          throw new Error("Nothing was found!");
-      }
-      return 0;
-
+  const router = useRouter();
+  const reroute = (query: string) => {
+      router.push({
+        pathname: "/search/[query]",
+        params: { query: query }
+      });
   }
-
 
   return (
     
@@ -35,11 +29,11 @@ export default function App() {
       <View style={styles.container}>
           <View className='header-container' style={styles.headerContainer}>
             <Image source={require('../assets/images/museum-search-icon.png')}></Image>
-            <Text style={[styles.heading, fonts.rubikBold]}>Museum <Text style={colors.primary}>Search</Text></Text>
+            <Text style={[styles.heading, fonts.rubikBold]}>Museum <Text style={colors.secondary}>Search</Text></Text>
             <Text style={[styles.headingAdditionalText, fonts.rubikMedium]}>Powered by Chicago API.</Text>
           </View>
           {/* Search logic */}
-          <Search searchResult={searchResult} setSearchResult={setSearchResult} init={executeSearch}/>
+          <Search searchResult={searchResult} setSearchResult={setSearchResult} init={reroute}/>
     </View>
     {/* Footer */}
     <View className='footer' style={styles.footer}>
@@ -98,6 +92,7 @@ export const fonts = StyleSheet.create({
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: 'white',
+    flex: 1,
   },
   headerContainer: {
     display: 'flex',
@@ -112,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   container: {
-    height: '100%',
+    flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -128,6 +123,7 @@ const styles = StyleSheet.create({
   // Footer styles
   footer: {
     gap: 16,
+    paddingBottom: 64,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -143,6 +139,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
+    position: 'absolute',
+    bottom: 0,
 
   },
   footerAdditionalText: {

@@ -2,21 +2,24 @@ import React from 'react'
 import {View, Text, StyleSheet, Pressable} from 'react-native'
 import { MaterialIcons } from '@react-native-vector-icons/material-icons';
 import {colors, fonts} from '../app/index'
-
+import { IconButton } from './iconButton';
+import { useRouter } from 'expo-router';
+import { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 
 // On the breadcrumbs the first page is always the start page
 // There can be up to three pages: Start - Search - Artwork
-export const Breadcrumbs = ({isArtwork = false, searchQuery, artworkName} : 
-    {isArtwork: Boolean, searchQuery: String, artworkName: String}) => {
-    return (
+export const Breadcrumbs = ({isArtwork = false, searchQuery, artworkName, artworkId} : 
+    {isArtwork: boolean, searchQuery: string, artworkName?: string, artworkId?: Int32}) => {
+        // Routing redirection part
+        const router = useRouter();
+    
+        return (
         <View style={styles.breadcrumbsContainer}>
-            <Pressable>
-                <MaterialIcons name="keyboard-arrow-left" />
-            </Pressable>
+            <IconButton iconName="keyboard-arrow-left" onPress={() => { router.back();}} />
             <View style={styles.breadcrumbList}>
                 <Text style={fonts.rubik}>Start</Text>
                 <MaterialIcons name="arrow-forward" />
-                <Text style={[fonts.rubik, !isArtwork && fonts.rubikMedium]}>{searchQuery}</Text>
+                <Text style={[fonts.rubik, styles.capitalize, !isArtwork && fonts.rubikMedium]}>{searchQuery}</Text>
                 {/* If its the artwork that's displayed and not just search */}
                 {isArtwork &&
                 (
@@ -42,10 +45,18 @@ const styles = StyleSheet.create({
         gap: 8,
         width: '100%',
         justifyContent: 'flex-start',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 16,
     },
     breadcrumbList: {
         display: 'flex',
         gap: 4,
         flexWrap: 'wrap',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    capitalize: {
+        textTransform: 'capitalize',
     },
 });

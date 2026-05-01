@@ -6,7 +6,7 @@ import {colors} from '../app/index'
 
 
 export const IconButton = ({iconName, onPress} 
-    : {iconName: string, onPress : Function}) => {
+    : {iconName: string, onPress? : Function}) => {
     return (
         <Pressable style={styles.iconButton} onPress={onPress as any}>
             <MaterialIcons name={iconName as any} color="white" size={24} />

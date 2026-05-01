@@ -5,14 +5,14 @@ import {colors, fonts} from '../app/index'
 
 
 
-export const GenericButton = ({icon, iconName, textContent, isDisabled} 
-    : {icon?: boolean, iconName: string, textContent: string, isDisabled?: boolean}) => {
+export const GenericButton = ({icon, iconName, textContent, isDisabled, task} 
+    : {icon?: boolean, iconName: string, textContent: string, isDisabled?: boolean, task?: Function}) => {
     return (
-        <Pressable style={styles.genericButton}>
+        <Pressable style={[styles.genericButton, isDisabled && styles.disabledButton]} disabled={isDisabled} onPress={task as any}>
             {icon && (<>
-            <MaterialIcons name={iconName as any} color="white" size={18} />
+            <MaterialIcons name={iconName as any} color={isDisabled ? "#1D1B20" : "white"} size={18} style={isDisabled && styles.disabledIcon}/>
             </>)}
-            <Text style={[fonts.rubik, colors.white]}>
+            <Text style={[fonts.rubik, colors.white, isDisabled && styles.disabledText]}>
                 {textContent}
             </Text>
         </Pressable>
@@ -29,8 +29,23 @@ const styles = StyleSheet.create(
             paddingRight: 24,
             paddingTop: 10,
             paddingBottom: 10,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 100,
 
         },
+        disabledIcon: {
+            opacity: 0.38,
+        },
+        disabledText: {
+            color: '#1D1B20',
+            opacity: 0.38,
+        },
+        disabledButton: {
+            backgroundColor: 'rgba(29, 27, 32, 0.12)',
+            color: '#1D1B20',
+        }
 
     }
 )
