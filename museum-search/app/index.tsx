@@ -6,6 +6,7 @@ import { Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold } f
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { Search } from '../components/searchmodal';
 import { useRouter } from 'expo-router';
+import { Footer } from '@/components/footer';
 
 export default function App() {
   const colorScheme = useColorScheme();
@@ -13,17 +14,28 @@ export default function App() {
     Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold
   });
   const [searchResult, setSearchResult] = useState([]);
+  
   // API Search logic
   const router = useRouter();
-  const reroute = (query: string) => {
-      router.push({
-        pathname: "/search/[query]",
-        params: { query: query }
-      });
+  const reroute = (query: string, artist: string, start: string, 
+    end: string, edu: boolean, view: boolean, rare: boolean) => {
+      if (query){
+        router.push({
+          pathname: "/search/[query]",
+          params: { 
+            query: query,
+            artist: artist,
+            start: start,
+            end: end,
+            edu: edu ? 'true' : 'false',
+            view: view ? 'true' : 'false',
+            rare: rare ? 'true' : 'false',
+          }
+        });
+      }
   }
 
-  return (
-    
+  return (  
     <View style={styles.mainContainer}>
       {/* Searchbar and the heading */}
       <View style={styles.container}>
@@ -35,16 +47,7 @@ export default function App() {
           {/* Search logic */}
           <Search searchResult={searchResult} setSearchResult={setSearchResult} init={reroute}/>
     </View>
-    {/* Footer */}
-    <View className='footer' style={styles.footer}>
-        <Text style={styles.footerAdditionalText}>This is a simple API search application to help you find infromation about the works of the Chicago University. Developed within the HCI course at the University of Vienna in SS2026.
-<br/> Enjoy. </Text>
-        
-        <View style={styles.copyright}>
-          <Text style={fonts.rubik}>Arsenii Malyshko © 2026</Text>
-        </View>
-
-    </View>
+    <Footer isIndex={true}/>
     </View>
   );
 }
@@ -89,7 +92,7 @@ export const fonts = StyleSheet.create({
 });
 
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: 'white',
     flex: 1,
@@ -120,15 +123,17 @@ const styles = StyleSheet.create({
     width: '100%',
     fontFamily: 'Rubik_400Regular' 
   },
-  // Footer styles
+});
+
+export const footerStyles = StyleSheet.create({
   footer: {
     gap: 16,
-    paddingBottom: 64,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
+    paddingBottom: 32,
 
   },
   // Copyright
@@ -149,6 +154,8 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingLeft: 16,
     paddingRight: 16,
+    marginBottom: 16,
     textAlign: 'center',
   }
-});
+
+})
