@@ -12,14 +12,15 @@ export const Breadcrumbs = ({isArtwork = false, searchQuery, artworkName, artwor
     {isArtwork: boolean, searchQuery: string, artworkName?: string, artworkId?: Int32}) => {
         // Routing redirection part
         const router = useRouter();
-    
         return (
         <View style={styles.breadcrumbsContainer}>
             <IconButton iconName="keyboard-arrow-left" onPress={() => { router.back();}} />
             <View style={styles.breadcrumbList}>
-                <Text style={fonts.rubik}>Start</Text>
+                <Text style={fonts.rubik} onPress={()=>{
+                    router.back();
+                }}>Start</Text>
                 <MaterialIcons name="arrow-forward" />
-                <Text style={[fonts.rubik, styles.capitalize, !isArtwork && fonts.rubikMedium]}>{searchQuery}</Text>
+                <Text style={[fonts.rubik, styles.capitalize, !isArtwork && fonts.rubikMedium]} onPress={()=>{if (isArtwork) router.back()}}>{searchQuery}</Text>
                 {/* If its the artwork that's displayed and not just search */}
                 {isArtwork &&
                 (
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
         alignItems: 'center',
+        width: '100%',
     },
     capitalize: {
         textTransform: 'capitalize',
