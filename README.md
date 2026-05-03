@@ -8,11 +8,14 @@
 
 Framework: React Native Android
 
-API-Version: 
-1. One UI 5.1 13: Samsung M32
+API-Version:
 
-Gerät(e), auf dem(denen) getestet wurde:
+- Pixel 10 Pro XL: 37.0
+  -Samsung M32: 36.0
+
+GerÃ¤t(e), auf dem(denen) getestet wurde:
 Samsung M32
+Pixel 10 Pro XL
 
 Nur für React Native: Link zur Expo App.
 

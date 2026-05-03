@@ -190,7 +190,6 @@ const styles = StyleSheet.create({
         height: '100%',
         display: 'flex',
         gap: 16,
-        overflowX: 'scroll',
         paddingBottom: 32,
     },
     noResults: {

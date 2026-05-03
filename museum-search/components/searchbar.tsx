@@ -18,12 +18,9 @@ export const SearchBar = ({placeholder, value, setValue, init, filter}
 
 const styles = StyleSheet.create({
     searchInput: {
-        outline: 'transparent',
-        outlineColor: 'transparent',
         borderColor: 'transparent',
         backgroundColor: 'transparent',
-        width: '100%',
-
+        flex: 1,
     },
     searchbar: {
         height: "auto",
@@ -34,6 +31,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         overflow: 'hidden',
         width: '100%',
+        maxWidth: 300,
     },
     searchButton: {
         width: 48,
