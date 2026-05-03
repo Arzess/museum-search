@@ -13,6 +13,9 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold
   });
+  if (!fontsLoaded) {
+    return null;
+  }
   const [searchResult, setSearchResult] = useState([]);
   
   // API Search logic
