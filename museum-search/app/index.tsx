@@ -13,13 +13,13 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     Rubik_400Regular, Rubik_500Medium, Rubik_600SemiBold, Rubik_700Bold
   });
+  const [searchResult, setSearchResult] = useState([]);
+  const router = useRouter();
   if (!fontsLoaded) {
     return null;
   }
-  const [searchResult, setSearchResult] = useState([]);
-  
+
   // API Search logic
-  const router = useRouter();
   const reroute = (query: string, artist: string, start: string, 
     end: string, edu: boolean, view: boolean, rare: boolean) => {
       if (query){
@@ -136,7 +136,7 @@ export const footerStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingBottom: 32,
+    paddingBottom: 72,
 
   },
   // Copyright
@@ -157,7 +157,6 @@ export const footerStyles = StyleSheet.create({
     width: '100%',
     paddingLeft: 16,
     paddingRight: 16,
-    marginBottom: 16,
     textAlign: 'center',
   }
 

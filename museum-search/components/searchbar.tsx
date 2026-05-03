@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         overflow: 'hidden',
         width: '100%',
+        maxWidth: 300,
     },
     searchButton: {
         width: 48,
