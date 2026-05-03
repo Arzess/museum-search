@@ -8,10 +8,14 @@
 
 Framework: React Native Android
 
-API-Version: [Android ]
+API-Version:
+
+- Pixel 10 Pro XL: 37.0
+  -Samsung M32: 36.0
 
 GerÃ¤t(e), auf dem(denen) getestet wurde:
-[Pixel2 etc.]
+Samsung M32
+Pixel 10 Pro XL
 
 Nur fÃ¼r React Native: Link zur Expo App.
 
