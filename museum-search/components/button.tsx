@@ -6,7 +6,7 @@ import {colors, fonts} from '../app/index'
 
 
 export const GenericButton = ({icon, iconName, textContent, isDisabled, task} 
-    : {icon?: boolean, iconName: string, textContent: string, isDisabled?: boolean, task?: Function}) => {
+    : {icon?: boolean, iconName?: string, textContent: string, isDisabled?: boolean, task?: Function}) => {
     return (
         <Pressable style={[styles.genericButton, isDisabled && styles.disabledButton]} disabled={isDisabled} onPress={task as any}>
             {icon && (<>

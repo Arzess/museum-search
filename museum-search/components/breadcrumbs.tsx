@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 16,
+        zIndex: 5,
     },
     breadcrumbList: {
         display: 'flex',
@@ -57,6 +58,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         width: '100%',
+        flex: 1,
     },
     capitalize: {
         textTransform: 'capitalize',

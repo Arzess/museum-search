@@ -5,17 +5,23 @@ import { View, ScrollView, Text, StyleSheet, Image } from 'react-native'
 import {colors, fonts} from '../../index'
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import RenderHTML from 'react-native-render-html'
+import { ImageZoom } from '@likashefqet/react-native-image-zoom';
+import { Footer } from '@/components/footer';
+
 
 export default function SearchQuery() {
     const {id, query} = useLocalSearchParams();
     const [result, setResult] = useState([]);
+    const [descriptionAvailable, setDescriptionAvailable] = useState(true);
     
     const fetchData = async () => {
             try {
-                const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?query[term][id]=${id}&fields=title,artist,image_id,date_display,description`);
+                const res = await fetch(`https://api.artic.edu/api/v1/artworks/search?query[term][id]=${id}&fields=title,artist_display,image_id,date_display,description,date_display,dimensions,style_title`);
                 const data = await res.json();
                 console.log(data);
                 setResult(data.data[0]);
+                // If there's no description
+                if (!data.data[0].description) setDescriptionAvailable(false);
 
             } catch (e) {
                 console.log(e);
@@ -47,7 +53,10 @@ export default function SearchQuery() {
             <Breadcrumbs isArtwork={true} artworkName={result.title} searchQuery={query as any}/>
             {/* @ts-ignore */}
             <ScrollView className="artwork" style={styles.artwork} contentContainerStyle={{rowGap: 16}}>
-                <View className='image-container' style={styles.imageContainer}><Image source={{uri: `https://www.artic.edu/iiif/2/${result.image_id}/full/400,/0/default.jpg`}} className="artwork-image" style={styles.artworkImage}/></View>
+                <View className='image-container' style={styles.imageContainer}>
+                    {/* @ts-ignore */}
+                    <ImageZoom uri={`https://www.artic.edu/iiif/2/${result.image_id}/full/400,/0/default.jpg`}/>
+                </View>
                                 
                 {/* Title*/}
                 <View className="desc-cat" style={styles.descCat}>
@@ -62,13 +71,48 @@ export default function SearchQuery() {
                     <Text style={[fonts.rubik]}>{id}</Text>
                 </View>
                 
+                {/* Artists */}
+                <View className="desc-cat" style={styles.descCat}>
+                    <Text style={[fonts.rubik, styles.additionalText]}>Artist(s)</Text>
+                    {/* @ts-ignore */}
+                    <Text style={[fonts.rubik]}>{result.artist_display}</Text>
+                </View>
+                
                 {/* Year */}
+                <View className="desc-cat" style={styles.descCat}>
+                    <Text style={[fonts.rubik, styles.additionalText]}>Year</Text>
+                    {/* @ts-ignore */}
+                    <Text style={[fonts.rubik]}>{result.date_display}</Text>
+                </View>
+                
+                {/* Dimensions */}
+                <View className="desc-cat" style={styles.descCat}>
+                    <Text style={[fonts.rubik, styles.additionalText]}>Dimensions</Text>
+                    {/* @ts-ignore */}
+                    <Text style={[fonts.rubik]}>{result.dimensions}</Text>
+                </View>
+
+                {/* Style */}
+                <View className="desc-cat" style={styles.descCat}>
+                    <Text style={[fonts.rubik, styles.additionalText]}>Style</Text>
+                    {/* @ts-ignore */}
+                    <Text style={[fonts.rubik]}>{result.style_title}</Text>
+                </View>
+                
                 {/* Long description */}
-                <ScrollView className="desc-cat" style={styles.descCat}>
-                    <Text style={[fonts.rubik, styles.additionalText]}>Description</Text>
-                    <RenderHTML source={descriptionText} tagsStyles={descStyles} />
-                </ScrollView>
+                {
+                descriptionAvailable &&
+                    <>
+                        <ScrollView className="desc-cat" style={styles.descCat}>
+                        <Text style={[fonts.rubik, styles.additionalText]}>Description</Text>
+                        <RenderHTML source={descriptionText} tagsStyles={descStyles} />
+                        </ScrollView>
+                    
+                    </>
+                }
+                
             </ScrollView>
+        <Footer/>
         </View>
 
     );
@@ -95,6 +139,7 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: '100%',
         height: 300,
+        zIndex: 2,
     },
     
     artworkTitleText: {
@@ -103,6 +148,9 @@ const styles = StyleSheet.create({
     descCat: {
         paddingLeft: 16,
         paddingRight: 16,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
 
     }
-})
+});
