@@ -17,7 +17,7 @@ GerÃ¤t(e), auf dem(denen) getestet wurde:
 Samsung M32
 Pixel 10 Pro XL
 
-Nur fÃ¼r React Native: Link zur Expo App.
+Nur für React Native: Link zur Expo App.
 
 Externe Libraries und Frameworks:
 
