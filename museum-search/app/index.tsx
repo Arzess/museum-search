@@ -136,7 +136,7 @@ export const footerStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingBottom: 72,
+    paddingBottom: 64,
 
   },
   // Copyright
@@ -159,5 +159,4 @@ export const footerStyles = StyleSheet.create({
     paddingRight: 16,
     textAlign: 'center',
   }
-
 })

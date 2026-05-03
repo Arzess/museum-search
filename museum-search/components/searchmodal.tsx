@@ -83,7 +83,7 @@ export const Search = ({searchResult, setSearchResult, init} : {searchResult : a
                     </View>
                     <GenericButton icon={false} textContent="Apply" task={()=>{
                         setModalVisible(!modalVisible)
-                    }}/>
+                    }} elevated={true}/>
                 </View>
             </Modal>
         </View>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     // Filter modal styles
     filterModal: {
         backgroundColor: 'white',
-
+        paddingTop: 32,
     },
 
     modalContainer: {
@@ -153,13 +153,13 @@ const styles = StyleSheet.create({
         gap: 16,
     },
     yearRange: {
-        width: "100%",
+        flex: 1,
         display: 'flex',
         gap: 16,
         flexDirection: 'row',
     },
     yearInput: {
-        width: '100%',
+        flex: 1,
         borderWidth: 1,
         borderColor: 'black',
         height: 48,
