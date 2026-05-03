@@ -13,7 +13,7 @@ export const Footer = ({isIndex = false} : {isIndex?: boolean}) => {
                         <Text style={footerStyles.footerAdditionalText}>
                             This is a simple API search application to help you find infromation about the works of the Chicago University. 
                             Developed within the HCI course at the University of Vienna in SS2026.
-                            <br/> 
+                            \n
                             Enjoy. 
                         </Text>
                     </>
