@@ -8,12 +8,13 @@
 
 Framework: React Native Android
 
-API-Version: [Android ]
+API-Version: 
+1. One UI 5.1 13: Samsung M32
 
-GerÃ¤t(e), auf dem(denen) getestet wurde:
-[Pixel2 etc.]
+Gerät(e), auf dem(denen) getestet wurde:
+Samsung M32
 
-Nur fÃ¼r React Native: Link zur Expo App.
+Nur für React Native: Link zur Expo App.
 
 Externe Libraries und Frameworks:
 
