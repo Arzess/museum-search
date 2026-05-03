@@ -23,7 +23,7 @@ export const Search = ({searchResult, setSearchResult, init} : {searchResult : a
             <SearchBar placeholder="Artwork" value={searchQuery} 
             setValue={setSearchQuery} init={()=>{
                 init(searchQuery, artistQuery, timeRangeStart, timeRangeEnd, isEducational, isOnDisplay, isNotOftenVisited);
-            }} filter={setModalVisible}/>
+            }} filter={()=>{setModalVisible(true)}}/>
             
             {/* Filter modal */}
             <Modal className="filter" style={styles.filterModal} 

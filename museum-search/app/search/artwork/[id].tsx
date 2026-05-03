@@ -52,11 +52,13 @@ export default function SearchQuery() {
             {/* @ts-ignore */}
             <Breadcrumbs isArtwork={true} artworkName={result.title} searchQuery={query as any}/>
             {/* @ts-ignore */}
+            <View className='image-container' style={styles.imageContainer}>
+                {/* @ts-ignore */}
+                <ImageZoom uri={`https://www.artic.edu/iiif/2/${result.image_id}/full/400,/0/default.jpg`}/>
+            </View>
+            {/* @ts-ignore */}
             <ScrollView className="artwork" style={styles.artwork} contentContainerStyle={{rowGap: 16}}>
-                <View className='image-container' style={styles.imageContainer}>
-                    {/* @ts-ignore */}
-                    <ImageZoom uri={`https://www.artic.edu/iiif/2/${result.image_id}/full/400,/0/default.jpg`}/>
-                </View>
+
                                 
                 {/* Title*/}
                 <View className="desc-cat" style={styles.descCat}>

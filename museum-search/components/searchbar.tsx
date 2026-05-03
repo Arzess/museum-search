@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
     searchInput: {
         borderColor: 'transparent',
         backgroundColor: 'transparent',
-        width: '100%',
-
+        flex: 1,
     },
     searchbar: {
         height: "auto",
