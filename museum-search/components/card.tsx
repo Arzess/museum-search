@@ -11,7 +11,7 @@ export const Card = ({title, artist, imageLink, navigationFunction}
     return (
         <View className="artwork-card" style={styles.artworkCard}>
             <View className="image-container" style={styles.imageContainer}>
-                <Image source={{uri: imageLink}} style={styles.cardImage}></Image>
+                <Image source={{uri: imageLink}} style={styles.cardImage} resizeMode='cover'></Image>
             </View>    
             <View className="card-desc" style={styles.cardDescription}>
                 <Text style={[fonts.rubik, fonts.rubikMedium]}>{title}</Text>
@@ -32,7 +32,10 @@ const styles = StyleSheet.create(
             minHeight: 100,
             borderRadius: 16,
             backgroundColor: 'white',
-            boxShadow: '0 2px 0 0 rgba(0, 0, 0, 0.25)',
+            elevation: 4,
+            shadowColor: 'black',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.25,
             overflow: 'hidden',
         },
         artworkLink: {

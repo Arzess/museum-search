@@ -18,8 +18,6 @@ export const SearchBar = ({placeholder, value, setValue, init, filter}
 
 const styles = StyleSheet.create({
     searchInput: {
-        outline: 'transparent',
-        outlineColor: 'transparent',
         borderColor: 'transparent',
         backgroundColor: 'transparent',
         width: '100%',
