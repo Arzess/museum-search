@@ -103,7 +103,7 @@ export const styles = StyleSheet.create({
   headerContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 8,
+    gap: 2,
     alignItems: 'center',
   },
   heading: {
@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 16,
+    gap: 32,
     paddingLeft: 16,
     paddingRight: 16,
 

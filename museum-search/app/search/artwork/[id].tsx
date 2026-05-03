@@ -54,7 +54,7 @@ export default function SearchQuery() {
             {/* @ts-ignore */}
             <View className='image-container' style={styles.imageContainer}>
                 {/* @ts-ignore */}
-                <ImageZoom uri={`https://www.artic.edu/iiif/2/${result.image_id}/full/400,/0/default.jpg`}/>
+                <ImageZoom uri={`https://www.artic.edu/iiif/2/${result.image_id}/full/400,/0/default.jpg`} minScale={300} maxScale={1000} doubleTapScale={2} isDoubleTapEnabled={true}/>
             </View>
             {/* @ts-ignore */}
             <ScrollView className="artwork" style={styles.artwork} contentContainerStyle={{rowGap: 16}}>
